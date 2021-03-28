@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router} from "react-router-dom";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import AppRoute from "./components/routes/AppRoute";
 import 'antd/dist/antd.css';
+import {AuthProvider} from "./context/AuthContext";
 
 ReactDOM.render(
     <React.StrictMode>
-        <AppRoute/>
+        <AuthProvider>
+            <Router>
+                <AppRoute/>
+            </Router>
+        </AuthProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );

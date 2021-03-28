@@ -1,9 +1,41 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const _ = require('lodash');
 const auth = require('../middleware/auth');
 
 const Categories = require('../models/category');
 const Product = require('../models/product');
+
+let storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/uploads');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+let validateFile = function (file, cb) {
+    let allowedFileTypes = /jpeg|jpg|png|JPEG|JPG|PNG/;
+    const extension = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimeType = allowedFileTypes.test(file.mimetype);
+    if (extension && mimeType) {
+        return cb(null, true);
+    } else {
+        cb("Invalid file type. Only JPEG, PNG, JPG file are allowed.")
+    }
+}
+
+let upload = multer(
+    {
+        storage: storage,
+        limits: {fileSize: 2000000},
+        fileFilter: function (req, file, callback) {
+            validateFile(file, callback);
+        }
+    }
+);
 
 
 router.get('/cate', auth, function (req, res, next) {
@@ -57,10 +89,10 @@ router.get('/product', auth, function (req, res, next) {
         })
 });
 
-router.post('/product/create', (req, res, next) => {
+router.post('/product/create', auth, upload.array('image', 2), (req, res, next) => {
     Product.findOne({name: req.body.name}).then(product => {
         if (product) return res.status(400).json({errors: 'Can not create cate'})
-        const newProduct = new Product({...req.body})
+        const newProduct = new Product({...req.body, images: _.map(req.body.files, (image) => image.path),})
         newProduct.save().then(products => {
             return res.status(200).json({products})
         }).catch(e => {

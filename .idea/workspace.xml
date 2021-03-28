@@ -2,8 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc474bb2-82b4-413c-b6c2-98f6014446d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layouts/MyFooter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layouts/MyHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layouts/MySider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/context/AuthContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/reducers/AuthReducer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/scense/HomeScene/HomeScene.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/scense/LoginScene/LoginScene.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/scense/ProductScene/CreateFormProduct.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/scense/ProductScene/ProductScene.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/services/api/API.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/services/api/Auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/services/api/BaseAPI.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/types/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/uploads/index.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/routes/AppRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/routes/AppRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/routes/AppURL.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/routes/AppURL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +43,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="1q6UWPDKWU70DFgDbgTuplFNf3F" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -29,11 +58,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.16.1" />
-    <property name="javascript.nodejs.core.library.typings.version" value="12.20.6" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.15.3" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.14.37" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -42,8 +74,14 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/scense/ProductScene" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -57,6 +95,7 @@
       <workItem from="1616464395129" duration="658000" />
       <workItem from="1616473131592" duration="6000" />
       <workItem from="1616724296135" duration="12957000" />
+      <workItem from="1616844385950" duration="8549000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1616751355241</created>
@@ -79,5 +118,15 @@
     </ignored-roots>
     <MESSAGE value="test" />
     <option name="LAST_COMMIT_MESSAGE" value="test" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="229" y="100" key="SettingsEditor" timestamp="1616845384563">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="229" y="100" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1616845384563" />
+    <state x="385" y="217" key="search.everywhere.popup" timestamp="1616846695084">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="217" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1616846695084" />
   </component>
 </project>

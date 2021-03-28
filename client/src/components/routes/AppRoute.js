@@ -1,58 +1,69 @@
 import React from "react";
 import {Layout, Menu, Breadcrumb} from 'antd';
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
+import {Switch, Route, Redirect} from 'react-router-dom';
 
-const {Header, Content, Footer, Sider} = Layout;
-const {SubMenu} = Menu;
+import MySider from "../layouts/MySider";
+import MyHeader from "../layouts/MyHeader";
+import HomeScene from "../../scense/HomeScene/HomeScene";
+import LoginScene from "../../scense/LoginScene/LoginScene";
+import AppURL from "./AppURL";
+import ProductScene from "../../scense/ProductScene/ProductScene";
+import CreateFormProduct from "../../scense/ProductScene/CreateFormProduct";
+
+
+const {Content, Footer} = Layout;
+
+const routes = [
+    {
+        path: AppURL.home(),
+        exact: true,
+        component: HomeScene
+    },
+    {
+        path: AppURL.login(),
+        exact: true,
+        component: LoginScene
+    },
+    {
+        path: AppURL.product(),
+        exact: true,
+        component: ProductScene
+    },
+    {
+        path: AppURL.create('product'),
+        component: CreateFormProduct
+    }
+]
 
 const AppRoute = () => {
-    const [collapsed, setCollapsed] = React.useState(false)
 
-    const onCollapse = () => {
-        setCollapsed(!collapsed)
-    };
+    React.useEffect(() => {
+        const auth = localStorage.getItem('auth')
+
+        if (auth === undefined || null) {
+            return <Redirect to={AppURL.login()}/>
+        }
+    })
 
     return (
         <div id='components-layout-demo-side'>
             <Layout style={{minHeight: '100vh'}}>
-                <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-                    <div className="logo"/>
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1" icon={<PieChartOutlined/>}>
-                            Option 1
-                        </Menu.Item>
-                        <Menu.Item key="2" icon={<DesktopOutlined/>}>
-                            Option 2
-                        </Menu.Item>
-                        <SubMenu key="sub1" icon={<UserOutlined/>} title="User">
-                            <Menu.Item key="3">Tom</Menu.Item>
-                            <Menu.Item key="4">Bill</Menu.Item>
-                            <Menu.Item key="5">Alex</Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub2" icon={<TeamOutlined/>} title="Team">
-                            <Menu.Item key="6">Team 1</Menu.Item>
-                            <Menu.Item key="8">Team 2</Menu.Item>
-                        </SubMenu>
-                        <Menu.Item key="9" icon={<FileOutlined/>}>
-                            Files
-                        </Menu.Item>
-                    </Menu>
-                </Sider>
+                <MySider/>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background" style={{padding: 0}}/>
+                    <MyHeader/>
                     <Content style={{margin: '0 16px'}}>
                         <Breadcrumb style={{margin: '16px 0'}}>
                             <Breadcrumb.Item>User</Breadcrumb.Item>
                             <Breadcrumb.Item>Bill</Breadcrumb.Item>
                         </Breadcrumb>
                         <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
-                            Bill is a cat.
+                            <Switch>
+                                {
+                                    routes.map((i, index) => (
+                                        <Route key={index} path={i.path} component={i.component} exact={i.exact}/>
+                                    ))
+                                }
+                            </Switch>
                         </div>
                     </Content>
                     <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
