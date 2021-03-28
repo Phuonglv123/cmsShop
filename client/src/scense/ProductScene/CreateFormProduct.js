@@ -50,7 +50,7 @@ const CreateFormProduct = () => {
         });
     };
 
-    const onFinish = (values: any) => {
+    const onFinish = () => {
 
     };
 

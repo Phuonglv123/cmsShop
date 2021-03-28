@@ -1,7 +1,6 @@
 import React from "react";
-import {Layout, Menu, Breadcrumb} from 'antd';
+import {Layout, Breadcrumb} from 'antd';
 import {Switch, Route, Redirect} from 'react-router-dom';
-
 import MySider from "../layouts/MySider";
 import MyHeader from "../layouts/MyHeader";
 import HomeScene from "../../scense/HomeScene/HomeScene";
@@ -9,20 +8,14 @@ import LoginScene from "../../scense/LoginScene/LoginScene";
 import AppURL from "./AppURL";
 import ProductScene from "../../scense/ProductScene/ProductScene";
 import CreateFormProduct from "../../scense/ProductScene/CreateFormProduct";
-
+import {PrivateRoute} from "./PrivateRoute";
 
 const {Content, Footer} = Layout;
 
 const routes = [
     {
         path: AppURL.home(),
-        exact: true,
         component: HomeScene
-    },
-    {
-        path: AppURL.login(),
-        exact: true,
-        component: LoginScene
     },
     {
         path: AppURL.product(),
@@ -35,16 +28,7 @@ const routes = [
     }
 ]
 
-const AppRoute = () => {
-
-    React.useEffect(() => {
-        const auth = localStorage.getItem('auth')
-
-        if (auth === undefined || null) {
-            return <Redirect to={AppURL.login()}/>
-        }
-    })
-
+const DefaultContainer = () => {
     return (
         <div id='components-layout-demo-side'>
             <Layout style={{minHeight: '100vh'}}>
@@ -60,7 +44,8 @@ const AppRoute = () => {
                             <Switch>
                                 {
                                     routes.map((i, index) => (
-                                        <Route key={index} path={i.path} component={i.component} exact={i.exact}/>
+                                        <PrivateRoute key={index} path={i.path} component={i.component}
+                                                      exact={i.exact}/>
                                     ))
                                 }
                             </Switch>
@@ -70,6 +55,15 @@ const AppRoute = () => {
                 </Layout>
             </Layout>
         </div>
+    )
+}
+
+const AppRoute = () => {
+    return (
+        <Switch>
+            <Route exact={true} path={AppURL.login()} component={LoginScene}/>
+            <Route component={DefaultContainer}/>
+        </Switch>
     )
 }
 

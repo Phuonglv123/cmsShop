@@ -8,7 +8,7 @@ const config = require('../config/config')
 const User = require('../models/user');
 
 router.post('/register', (req, res, next) => {
-    User.findOne({name: req.body.name}).then(user => {
+    User.findOne({username: req.body.username}).then(user => {
         if (user) return res.status(400).json({error: 'can not create user'})
         const newUsers = new User({...req.body});
         bcrypt.genSalt(10, (err, salt) => {
@@ -29,16 +29,17 @@ router.post('/register', (req, res, next) => {
 })
 
 router.post('/login', (req, res) => {
-    User.findOne({email: req.body.email})
+    User.findOne({username: req.body.username})
         .then(user => {
-            if (!user) return res.status(400).json({error: "email or password is wrong "})
+            if (!user) return res.status(400).json({error: "username or password is wrong "})
             bcrypt.compare(req.body.password, user.password).then(
                 isMatch => {
                     if (isMatch) {
                         const payload = {
                             id: user._id,
-                            email: user.email,
+                            username: user.username,
                             fullName: user.fullName,
+                            emaill: user.email
                         };
                         jwt.sign(
                             payload,
