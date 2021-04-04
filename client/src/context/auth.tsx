@@ -1,6 +1,13 @@
 import React from 'react';
-import {AuthAction, authReducer, AuthState, initialState} from "../reducers/AuthReducer";
-import API from "../services/api/API";
+import {
+    authReducer,
+    initialState,
+    AuthAction,
+    AuthState,
+} from '../reducers/auth';
+import { getLocalStorageValue } from '../utils';
+import { TOKEN_KEY, setToken, isTokenValid } from '../api/APIUtils';
+// import { logout } from '../api/AuthAPI';
 
 type AuthContextProps = {
     state: AuthState;
@@ -15,20 +22,20 @@ const AuthContext = React.createContext<AuthContextProps>({
 export function AuthProvider(props: React.PropsWithChildren<{}>) {
     const [state, dispatch] = React.useReducer(authReducer, initialState);
     React.useEffect(() => {
-        const token = localStorage.getItem('auth')
+        const token = getLocalStorageValue(TOKEN_KEY);
 
         if (!token) return;
 
-        if (API.isTokenValid(token)) {
-            API.setToken(token)
-            dispatch({type: 'LOGIN'});
+        if (isTokenValid(token)) {
+            setToken(token);
+            dispatch({ type: 'LOGIN' });
         } else {
-            dispatch({type: 'LOGOUT'});
-            // logout();
+            dispatch({ type: 'LOGOUT' });
+            //logout();
         }
     }, []);
 
-    return <AuthContext.Provider value={{state, dispatch}} {...props} />;
+    return <AuthContext.Provider value={{ state, dispatch }} {...props} />;
 }
 
 export default function useAuth() {

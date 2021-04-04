@@ -41,8 +41,8 @@ let upload = multer(
 router.get('/cate', auth, function (req, res, next) {
     Categories
         .find()
-        .then(teams => {
-            res.status(200).json({data: teams})
+        .then(cates => {
+            res.status(200).json({data: cates})
         })
         .catch(e => {
             return res.status(500).json({error: 'server not found'})

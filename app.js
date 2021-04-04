@@ -23,8 +23,8 @@ mongoose.connect(config.mongodbURI, {useNewUrlParser: true})
     .then(() => console.log(" ----- MongoDB starting..."))
     .catch(err => console.log(err));
 
-app.use('/auth', require('./routes/users'));
-app.use('/', require('./routes/index'));
+app.use('/api/auth', require('./routes/users'));
+app.use('/api/', require('./routes/index'));
 
 const port = 5000;
 app.listen(port, () => {

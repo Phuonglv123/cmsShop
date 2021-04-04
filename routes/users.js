@@ -3,8 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config')
+const auth = require('../middleware/auth');
 //load model
-
 const User = require('../models/user');
 
 router.post('/register', (req, res, next) => {
@@ -29,24 +29,23 @@ router.post('/register', (req, res, next) => {
 })
 
 router.post('/login', (req, res) => {
-    User.findOne({username: req.body.username})
+    User.findOne({username: req.body.user.username})
         .then(user => {
             if (!user) return res.status(400).json({error: "username or password is wrong "})
-            bcrypt.compare(req.body.password, user.password).then(
+            bcrypt.compare(req.body.user.password, user.password).then(
                 isMatch => {
                     if (isMatch) {
                         const payload = {
                             id: user._id,
                             username: user.username,
                             fullName: user.fullName,
-                            emaill: user.email
                         };
                         jwt.sign(
                             payload,
                             config.secretKey,
                             {expiresIn: 3600},
                             (err, token) => {
-                                res.status(200).json({payload, token})
+                                return res.status(200).json({'user': {payload, token}})
                             }
                         )
                     } else {
@@ -66,6 +65,15 @@ router.post('/login', (req, res) => {
             })
         }).catch((e) => {
         return res.status(400).json(e)
+    })
+})
+
+router.get('/current', auth, (req, res) => {
+    console.log(req.userId)
+    User.findById(req.userId).select('-password').then((user) => {
+        return res.status(200).json({user})
+    }).catch((e) => {
+        return res.status(500).json({e})
     })
 })
 
